@@ -1,12 +1,7 @@
 package br.com.movieList.dao;
-
-<<<<<<< HEAD
-public class MovieDao {}
-
-=======
 import java.sql.Connection;
 import java.sql.PreparedStatement;
- import br.com.movieList.movie.Movie;
+import br.com.movieList.movie.Movie;
 
 public class MovieDao {
 	public void insertMovie(Movie movie) {
@@ -27,7 +22,28 @@ public class MovieDao {
 }
 	}
 	
-	
+	public void updateUser (Movie movie) {
+        try {
+            // Cria a conexão com o banco de dados
+            Connection conn = (new ConnectionFactory()).getConnection();
+            PreparedStatement p =
+                    conn.prepareStatement("update movies set movies_name = ?, is_watched = ? where id_movies = ?");
+
+            p.setString(1, movie.getName());
+            p.setString(1, movie.getWatched());
+            p.setLong(3, movie.getId());
+            
+
+            p.execute();
+            p.close();
+            conn.close();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 	
 }
->>>>>>> master
+
