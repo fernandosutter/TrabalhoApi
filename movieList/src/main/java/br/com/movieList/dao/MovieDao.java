@@ -1,4 +1,12 @@
 package br.com.movieList.dao;
 
-public class MovieDao {}
+public class MovieDao {
+<<<<<<< HEAD
+       
+	
+//
+	//
+=======
 
+>>>>>>> master
+}
