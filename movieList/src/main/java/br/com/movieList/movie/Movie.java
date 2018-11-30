@@ -1,4 +1,4 @@
-package com.example.demo.movie;
+package br.com.movieList.movie;
 
 public class Movie {
 

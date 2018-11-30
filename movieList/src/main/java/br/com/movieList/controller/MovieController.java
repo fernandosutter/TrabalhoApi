@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package br.com.movieList.controller;
 
 public class MovieController {
 	private long id;

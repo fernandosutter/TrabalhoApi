@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package br.com.movieList.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
