@@ -24,7 +24,7 @@ public class MovieController {
 	public List<Movie> getAll() {
 		MovieDao dao = new MovieDao();
 		
-		return dao.getAll();
+		return MovieDao.getAll();
 	}
 	
 	@ResponseBody

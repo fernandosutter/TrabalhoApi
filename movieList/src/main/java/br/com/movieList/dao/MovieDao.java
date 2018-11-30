@@ -1,9 +1,37 @@
 package br.com.movieList.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.movieList.movie.Movie;
 
 public class MovieDao {
+
+	public List<Movie> getAll(){
+		
+		ArrayList<Movie> movies = new ArrayList<Movie>();
+		try{
+			 Connection conn = (new ConnectionFactory()).getConnection();
+			PreparedStatement stmt = conn.prepareStatement("select id_movies, movie_name, is_watched from movies ");
+			ResultSet resultSet = stmt.executeQuery();
+			while(resultSet.next()){
+				Movie movie = new Movie();
+				movie.setId(resultSet.getLong(1));
+				movie.setName(resultSet.getString(2));
+				movie.setWatched(resultSet.getString(3));
+				
+				movies.add(movie);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+            throw new RuntimeException();
+        }
+		return movies;
+	}
+	
+	
 	public void insertMovie(Movie movie) {
         try {
            
