@@ -5,8 +5,7 @@ public class Movie {
 	private long id;
 	
 	private String name;
-	private String watched;
-	
+	private boolean watched;
 	public String getName() {
 		return name;
 	}
@@ -25,12 +24,11 @@ public class Movie {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
-	public void setWatched(String watched) {
-		this.watched = watched;
-	}
-	public String getWatched() {
+	public boolean isWatched() {
 		return watched;
+	}
+	public void setWatched(boolean watched) {
+		this.watched = watched;
 	}
 	
 	
