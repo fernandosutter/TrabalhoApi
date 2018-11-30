@@ -3,11 +3,18 @@ package br.com.movieList.movie;
 public class Movie {
 
 	private long id;
+	
 	private String name;
 	private boolean watched;
 	public String getName() {
 		return name;
 	}
+	
+	@Override
+	public String toString() {
+		return "Movie [id=" + id + ", name=" + name + ", watched=" + watched + "]";
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -23,5 +30,7 @@ public class Movie {
 	public void setWatched(boolean watched) {
 		this.watched = watched;
 	}
+	
+	
 	
 }
