@@ -71,7 +71,48 @@ public class MovieDao {
 
     }
 
+	 public void deleteMovie(long aux) {
+	        try {
+	            // Cria a conexão com o banco de dados
+	            Connection conn = (new ConnectionFactory()).getConnection();
+	            PreparedStatement p =
+	                    conn.prepareStatement("delete from movies where id_movies  = ?");
 
-	
+	            p.setLong(1, aux);
+	            p.execute();
+	            p.close();
+	            conn.close();
+	        }catch(Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	 
+	 public Movie selectMovie(long id) {
+	        Movie movie = null ;
+	        try {
+	            // Cria a conexão com o banco de dados
+	            Connection conn = (new ConnectionFactory()).getConnection();
+
+	            PreparedStatement p = conn.prepareStatement("select id_movie, movie_name, is_watched from movies where id_movies = ? ");
+	            p.setLong(1, id);
+
+	            ResultSet rs = p.executeQuery();
+	            if (rs.next()){
+	            	movie = new Movie();
+	            	movie.setId(rs.getLong(1));
+	            	movie.setName(rs.getString(2));
+	            	movie.setWatched(rs.getString(3));
+	            
+	            }
+	            p.close();
+	            // Fecha conexão com o banco de dados
+	            conn.close();
+	        }catch(Exception e) {
+	            e.printStackTrace();
+	        }
+	        return movie;
+	    }
+	 
 }
 
