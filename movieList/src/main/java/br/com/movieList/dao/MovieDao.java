@@ -50,15 +50,15 @@ public class MovieDao {
 }
 	}
 	
-	public void updateUser (Movie movie) {
+	public void updateMovie (Movie movie) {
         try {
             // Cria a conexão com o banco de dados
             Connection conn = (new ConnectionFactory()).getConnection();
             PreparedStatement p =
-                    conn.prepareStatement("update movies set movies_name = ?, is_watched = ? where id_movies = ?");
+                    conn.prepareStatement("update movies set movie_name = ?, is_watched = ? where id_movies = ?");
 
             p.setString(1, movie.getName());
-            p.setString(1, movie.getWatched());
+            p.setString(2, movie.getWatched());
             p.setLong(3, movie.getId());
             
 
@@ -94,7 +94,7 @@ public class MovieDao {
 	            // Cria a conexão com o banco de dados
 	            Connection conn = (new ConnectionFactory()).getConnection();
 
-	            PreparedStatement p = conn.prepareStatement("select id_movie, movie_name, is_watched from movies where id_movies = ? ");
+	            PreparedStatement p = conn.prepareStatement("select id_movies, movie_name, is_watched from movies where id_movies = ? ");
 	            p.setLong(1, id);
 
 	            ResultSet rs = p.executeQuery();

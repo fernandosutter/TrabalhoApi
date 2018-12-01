@@ -24,7 +24,7 @@ public class MovieController {
 	public List<Movie> getAll() {
 		MovieDao dao = new MovieDao();
 		
-		return MovieDao.getAll();
+		return dao.getAll();
 	}
 	
 	@ResponseBody
@@ -32,7 +32,7 @@ public class MovieController {
 	public ResponseEntity<?> get(@PathVariable int id) {
 		MovieDao dao = new MovieDao();
 		
-		Movie p = dao.get(id);
+		Movie p = dao.selectMovie(id);
 		if(p == null) {
 			return ResponseEntity.notFound().build();
 		}
@@ -46,7 +46,7 @@ public class MovieController {
 	@RequestMapping(value = "/movie",method = POST, produces = "application/json")
 	public ResponseEntity<?> add(@RequestBody Movie movie) {
 		MovieDao dao = new MovieDao();
-		dao.insert(movie);
+		dao.insertMovie(movie);
 		return  ResponseEntity.ok().build();
 	
 	}
@@ -56,7 +56,7 @@ public class MovieController {
 	public ResponseEntity<?> deleteEmployee(@PathVariable int id) {
 		MovieDao dao = new MovieDao();
 		try {
-			dao.deleteById(id);
+			dao.deleteMovie(id);
 		}catch(Exception e) {
 			return ResponseEntity.notFound().build();
 		}
@@ -66,11 +66,11 @@ public class MovieController {
 	@ResponseBody
 	@RequestMapping(value = "/movie/{id}",method = PUT, produces = "application/json")
 	public ResponseEntity<?> putMovie(@PathVariable int id,@RequestBody  Movie movie) {
-		MovieDAO dao = new MovieDAO();
+		MovieDao dao = new MovieDao();
 		try {
 			System.out.println(movie);
 			movie.setId(id);
-			dao.putByMovie(movie);
+			dao.updateMovie(movie);
 		}catch(Exception e) {
 			return ResponseEntity.notFound().build();
 		}
